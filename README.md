@@ -1,31 +1,68 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# AracPanel
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+A vehicle maintenance and monitoring mobile application built with Kotlin Multiplatform (KMP) and Compose Multiplatform. Structured around Clean Architecture, MVVM, and TDD principles.
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## 📱 Features
 
-### Running the apps
+- **Dashboard** — Active vehicle/machine count, alarm status, and quick access menu
+- **Machine/Vehicle List & Detail** — Live status tracking, OEE, working hours, temperature chart
+- **Notifications** — Severity-filterable alarm list with acknowledge flow
+- **Predictive Maintenance** — Daily alert chart, work orders, failure prediction
+- **Reporting** — Customizable report creation, listing, and scheduling
+- **Fuel & Emissions Monitoring** — Period/source-based fuel consumption and CO₂ emission charts, maintenance impact card
+- **Settings** — Dark/light theme and Turkish/English language support
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## 🛠️ Tech Stack
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+| Layer | Technology |
+|---|---|
+| UI | Jetpack Compose / Compose Multiplatform, Material 3 |
+| Architecture | Clean Architecture (domain / data / presentation) + MVVM |
+| Dependency Injection | Koin |
+| Networking | Ktor Client (mocked via MockEngine) |
+| Charts | Vico (Cartesian Charts) |
+| Navigation | Jetpack Navigation Compose |
+| Testing | Kotlin Test, Coroutines Test, Turbine, MockK |
+| Serialization | Kotlinx Serialization |
 
-### Running tests
+## 🏗️ Architecture
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+The project follows Clean Architecture, with dependencies flowing inward:
+```
+presentation/  → UI, ViewModel, UiState (Compose)
+domain/        → Models, Repository interfaces, UseCases (pure Kotlin, framework-agnostic)
+data/          → DTOs, Mappers, Repository implementations, mock APIs
+di/            → Koin module (wires the layers together)
+```
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+Each feature (`reports`, `energycarbon`, `maintenance`, etc.) is spread across these four layers, keeping the codebase testable and features independent of one another.
 
----
+## 🧪 Testing
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Use cases and mappers in the domain layer are developed test-first (TDD), using fake repository implementations. Tests live under `shared/src/commonTest`.
+
+## 🚀 Running the App
+
+**Android:**
+
+```
+./gradlew :androidApp:assembleDebug
+```
+
+or run it from Android Studio using the ▶️ Run button.
+
+**iOS:**
+Open the `/iosApp` directory in Xcode and run it from there.
+
+## 📂 Project Structure
+```
+androidApp/    → Android entry point
+iosApp/        → iOS entry point (SwiftUI)
+shared/        → Cross-platform shared code (UI + business logic)
+  └── commonMain/kotlin/com/example/myapplication/
+      ├── domain/
+      ├── data/
+      ├── di/
+      ├── presentation/
+      └── navigation/
+```
