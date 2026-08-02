@@ -66,3 +66,18 @@ shared/        → Cross-platform shared code (UI + business logic)
       ├── presentation/
       └── navigation/
 ```
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td><img width="432" alt="screenshot" src="https://github.com/user-attachments/assets/7154d946-f9b4-4f8f-ad68-e7d8be05248e" /></td>
+    <td><img width="402" alt="screenshot" src="https://github.com/user-attachments/assets/2340db73-468d-4e7c-ac8b-3f2017175988" /></td>
+    <td><img width="407" alt="screenshot" src="https://github.com/user-attachments/assets/e9d8798b-3174-444b-9548-7e3207e55efd" /></td>
+  </tr>
+  <tr>
+    <td><img width="407" alt="screenshot" src="https://github.com/user-attachments/assets/f4640399-6a81-4813-93c1-cdc5e67bdb04" /></td>
+    <td><img width="402" alt="screenshot" src="https://github.com/user-attachments/assets/f3cea393-bd4f-4744-8b1b-65d27b19f59e" /></td>
+    <td><img width="421" alt="screenshot" src="https://github.com/user-attachments/assets/893599ab-537a-4789-aac9-5a309aab322f" /></td>
+  </tr>
+</table>
+
